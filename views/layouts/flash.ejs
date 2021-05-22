@@ -1,0 +1,18 @@
+<!-- flash.ejs focuses on sending out flash alerts if success or an error has occurred (e.g.
+successful login or unsuccessful login). flash.ejs defines the alert template -->
+
+<% if(success && success.length) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            </button>
+    </div>
+    <% } %>
+
+        <% if(error && error.length) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    </button>
+            </div>
+            <% } %>

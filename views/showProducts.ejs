@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Shop Express</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+</head>
+
+<body class="d-flex flex-column vh-100">
+    <nav class="navbar stick-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                Shop Express</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/productsBeauty">Beauty & Personal Care</a></li>
+                            <li><a class="dropdown-item" href="/productsClothes">Clothes</a></li>
+                            <li><a class="dropdown-item" href="/productsFood">Food</a></li>
+                            <li><a class="dropdown-item" href="/productsHomeDecor">Home Decor</a></li>
+                            <li><a class="dropdown-item" href="/productsPetSupplies">Pet Supplies</a></li>
+                            <li><a class="dropdown-item" href="/productsTechnology">Technology</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                <path
+                                    d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+                                <path
+                                    d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                            </svg>
+                            Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                            </svg>
+                            Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-6 offset-3 py-4">
+            <div class="card border border-info">
+                <div class="card-header">
+                    <a class="btn btn-info" href="/products<%=temp%>">Back to <%= products.category %></a>
+                </div>
+                <img class="card-img-top" src="<%= products.image %>" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= products.title %>
+                    </h5>
+                    <% if (!products.productDetails.description){ %>
+                        <p class="card-text">No description available</p>
+                        <% } %>
+                            <% if (products.productDetails.description){ %>
+                                <p class="card-text">
+                                    <%=products.productDetails.description %>
+                                </p>
+                                <% } %>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted text-center">
+                        Rate: <%= products.rating.score %> Total Ratings: <%= products.rating.totalRatings %>
+                    </li>
+                    <li class="list-group-item text-center">
+                        <h4>
+                            $ <%= products.price %>
+                        </h4>
+                    </li>
+                </ul>
+                <div class="card-body text-center">
+                    <!-- <a href="/productsCart" class="btn btn-info">
+                        Add to cart</a> -->
+                    <form action="/products/<%= products._id %>" method="POST">
+                        <button class="btn-info btn">Add to cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <footer class="footer bg-dark py-3 mt-auto">
+        <div class="container">
+            &copy; Shop Express
+        </div>
+    </footer>
+</body>
+
+</html>
